@@ -2,7 +2,6 @@ const { response, request } = require('express')
 const bcryptjs = require('bcryptjs')
 
 const User = require('../models/user')
-const user = require('../models/user')
 
 const getUsers = async (req = request, res = response) => {
   const { limit = 5, from = 0 } = req.query
@@ -61,7 +60,7 @@ const deleteUser = async (req = request, res = response) => {
   //change the status
   const userDelele = await User.findByIdAndUpdate(id, { active: false })
 
-  res.status(204).send();
+  res.status(204).send()
 }
 
 module.exports = {
