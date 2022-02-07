@@ -58,9 +58,16 @@ const deleteUser = async (req = request, res = response) => {
   // const userDeleted = await User.findByIdAndDelete(id)
 
   //change the status
-  const userDelele = await User.findByIdAndUpdate(id, { active: false })
+  const userDeleted = await User.findByIdAndUpdate(id, { active: false })
 
-  res.status(204).send()
+  //get auth user
+  const currentUser = req.user
+  
+  console.log(currentUser);
+
+  res.status(200).json({
+    userDeleted,
+  })
 }
 
 module.exports = {

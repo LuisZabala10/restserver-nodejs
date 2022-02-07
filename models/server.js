@@ -1,8 +1,10 @@
 const express = require('express')
 const cors = require('cors')
 
-//my exports
-const userRoutes = require('../routes/user.routes')
+//routes
+const userRouter = require('../routes/user.routes')
+const authRouter = require('../routes/auth.routes')
+//db conneciton
 const dbConnection = require('../database/config.db')
 
 class Server {
@@ -35,7 +37,9 @@ class Server {
 
   routes() {
     //users routes
-    this.app.use('/api/users', userRoutes)
+    this.app.use('/api/users', userRouter)
+    //authentication route
+    this.app.use('/api/auth/login', authRouter)
   }
 
   start = () => {

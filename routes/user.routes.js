@@ -9,7 +9,11 @@ const {
   createUser,
   deleteUser,
 } = require('../controllers/user.controller')
+//validations
 const validateFields = require('../middlewares/validate-fields')
+const valdiateJWT = require('../middlewares/validate-jwt')
+const { isAdmin, hasRole } = require('../middlewares/validate-roles')
+
 const {
   isValidRole,
   existsEmail,
@@ -55,6 +59,8 @@ router.post(
 router.delete(
   '/:id',
   [
+    valdiateJWT,
+    hasRole('ADMIN_ROLE', 'SALES_ROLE'),
     check('id', 'You must provide a valid id').isMongoId(),
     check('id').custom(existsUserById),
     validateFields,
