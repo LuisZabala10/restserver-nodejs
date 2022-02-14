@@ -34,7 +34,7 @@
     <script>
       function handleCredentialResponse(response) {
         const body = {id_token:response.credential};
-        fetch("http://localhost:3000/api/auth/login/google", {
+        fetch("https://restserver-api-nodejs.herokuapp.com/api/auth/login/google", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
